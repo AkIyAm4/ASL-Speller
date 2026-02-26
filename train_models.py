@@ -1,6 +1,6 @@
 """
 ╔══════════════════════════════════════════════════════════════╗
-║         STEP 2 — TRAIN & COMPARE BOTH ML MODELS             ║
+║         STEP 2 — TRAIN & COMPARE BOTH ML MODELS              ║
 ╚══════════════════════════════════════════════════════════════╝
 
 What this script does:
@@ -355,5 +355,6 @@ print("  Saved: model_nn.pt")
 with open("best_model_info.pkl", "wb") as f:
     pickle.dump({"winner": winner, "classes": CLASSES}, f)
 print(f"  Saved: best_model_info.pkl  (winner = {winner})")
+
 
 print("\n  Next step: run python asl_speller.py")
