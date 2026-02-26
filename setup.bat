@@ -55,3 +55,4 @@ echo   3. python asl_speller.py
 echo ============================================
 echo.
 pause
+ 
