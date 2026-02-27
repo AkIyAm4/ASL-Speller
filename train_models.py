@@ -61,22 +61,6 @@ print(f"  Classes   : {NUM_CLASSES}  → {CLASSES}")
 # ══════════════════════════════════════════════════════════════════════════════
 # STEP B — SPLIT INTO TRAINING SET AND TEST SET
 # ══════════════════════════════════════════════════════════════════════════════
-"""
-WHY DO WE SPLIT DATA?
-
-Imagine you're studying for an exam. If you memorize ONLY the practice
-questions (and the exam uses the same questions), you'd get 100% — but
-you haven't actually learned anything. You just memorized.
-
-Machine learning models can do the same thing — called "overfitting".
-So we split our data:
-  • Training set (80%) — the model learns from this
-  • Test set    (20%) — we hide this from the model, then use it to
-                        check how well it generalizes to new data
-
-If a model scores 99% on training data but 60% on test data, it overfit.
-If both scores are similar, the model actually learned the patterns.
-"""
 X_train, X_test, y_train, y_test = train_test_split(
     X, y,
     test_size=0.2,       # 20% for testing
@@ -91,26 +75,6 @@ print(f"  Test samples     : {len(X_test)}")
 # ══════════════════════════════════════════════════════════════════════════════
 # MODEL 1 — RANDOM FOREST
 # ══════════════════════════════════════════════════════════════════════════════
-"""
-WHAT IS A RANDOM FOREST?
-
-Think of it like asking 200 different people for their opinion and taking
-a majority vote. Each "person" is a Decision Tree.
-
-A Decision Tree asks a series of yes/no questions:
-  "Is feature[3] > 0.2?" → yes → "Is feature[7] < -0.1?" → ... → "It's A!"
-
-The problem with a single tree: it might overfit by memorizing your data.
-Solution: train 200 DIFFERENT trees, each on a random subset of data and
-features, then let them vote. The majority vote is usually much more accurate.
-
-This "wisdom of the crowd" approach is called ensemble learning.
-Random Forests are great for beginners because:
-  ✓ Fast to train
-  ✓ Hard to mess up (few hyperparameters)
-  ✓ Great baseline accuracy
-  ✓ No GPU needed
-"""
 print("\n" + "═"*55)
 print("  MODEL 1: RANDOM FOREST")
 print("═"*55)
@@ -140,55 +104,6 @@ print(classification_report(y_test, rf_preds, target_names=CLASSES))
 # ══════════════════════════════════════════════════════════════════════════════
 # MODEL 2 — NEURAL NETWORK (PyTorch)
 # ══════════════════════════════════════════════════════════════════════════════
-"""
-WHAT IS A NEURAL NETWORK?
-
-Inspired loosely by the brain. It has layers of "neurons" connected together.
-Each connection has a "weight" (a number). During training, these weights are
-adjusted so the network gets better at predicting the right letter.
-
-Our network has this structure:
-  Input layer  : 63 neurons  (one per feature)
-       ↓        (fully connected, with ReLU activation)
-  Hidden layer : 256 neurons (learns complex patterns)
-       ↓
-  Hidden layer : 128 neurons (refines those patterns)
-       ↓
-  Hidden layer : 64 neurons
-       ↓
-  Output layer : 24 neurons  (one per letter — highest score = prediction)
-
-KEY CONCEPTS:
-
-  Epoch: One full pass through ALL your training data.
-         Like reading a textbook once. We do many epochs so the model
-         can review the material multiple times.
-
-  Loss function: A number that measures how WRONG the model is.
-         Cross-entropy loss is common for classification — it penalizes
-         the model more when it's confidently wrong.
-
-  Optimizer (Adam): The algorithm that adjusts weights to reduce loss.
-         After each batch, it nudges weights in the direction that
-         reduces the loss. Adam is an adaptive optimizer that adjusts
-         the learning rate automatically — great for beginners.
-
-  Learning rate: How big each weight adjustment step is.
-         Too big → model overshoots and never converges
-         Too small → training takes forever
-         0.001 is a safe default.
-
-  Batch size: Instead of updating weights after every single sample
-         (too slow) or after ALL samples (too rough), we update after
-         every N samples. 32 is a common batch size.
-
-  Dropout: Randomly "turns off" neurons during training. This forces
-         the network to not rely on any single neuron, which reduces
-         overfitting.
-
-  BatchNorm: Normalizes the outputs of a layer to have mean≈0, std≈1.
-         This makes training faster and more stable.
-"""
 print("\n" + "═"*55)
 print("  MODEL 2: NEURAL NETWORK (PyTorch)")
 print("═"*55)
@@ -358,3 +273,4 @@ print(f"  Saved: best_model_info.pkl  (winner = {winner})")
 
 
 print("\n  Next step: run python asl_speller.py")
+
