@@ -1,6 +1,6 @@
 """
 ╔══════════════════════════════════════════════════════════════╗
-║           STEP 1 — COLLECT YOUR OWN HAND SIGN DATA          ║
+║           STEP 1 — COLLECT YOUR OWN HAND SIGN DATA           ║
 ╚══════════════════════════════════════════════════════════════╝
 
 What this script does:
@@ -60,7 +60,7 @@ CONNECTIONS = [
 # ── Letters we'll collect ──────────────────────────────────────────────────────
 # J and Z require motion (drawing in the air) so we skip them
 LETTERS = [l for l in "ABCDEFGHIKLMNOPQRSTUVWXY"]  # 24 letters
-SAMPLES_PER_LETTER = 150
+SAMPLES_PER_LETTER = 150 # More samples, better accuracy
 
 # ── Feature extraction ─────────────────────────────────────────────────────────
 def extract_features(landmarks):
@@ -208,3 +208,4 @@ print(f"  Total classes : {len(counts)}")
 print(f"  Samples/letter: {dict(sorted(counts.items()))}")
 print(f"\n  Saved to: {DATA_FILE}")
 print("  Next step: run python train_models.py")
+
